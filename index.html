@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethiopian Simple Present Tense Adventure</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Poppins for kid-friendly typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+            background: linear-gradient(135deg, #fef08a 0%, #fed7aa 50%, #bbf7d0 100%);
+            min-height: 100vh;
+        }
+        .ethiopian-pattern {
+            background-image: radial-gradient(#15803d 1px, transparent 1px), radial-gradient(#b91c1c 1px, #fef08a 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        .bouncing {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <header class="bg-emerald-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-2 sm:mb-0">
+                <div class="bg-amber-400 text-emerald-950 font-extrabold text-xl p-2 rounded-2xl shadow-md">
+                    🇪🇹
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-wide">Present Tense Verb Quest</h1>
+                    <p class="text-xs text-emerald-200">የቀላል የአሁን ጊዜ የግስ አጠቃቀም (Simple Present Tense Verbs)</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="switchTab('learn')" id="nav-learn" class="px-4 py-2 rounded-xl font-bold transition bg-amber-400 text-emerald-950 shadow-md">
+                    <i class="fa-solid fa-book-open mr-2"></i>1. Learn / ትምህርት
+                </button>
+                <button onclick="switchTab('game')" id="nav-game" class="px-4 py-2 rounded-xl font-bold transition bg-emerald-700 text-white hover:bg-emerald-600">
+                    <i class="fa-solid fa-gamepad mr-2"></i>2. Game / ጨዋታ
+                </button>
+                <div class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-full font-bold text-sm shadow flex items-center">
+                    <i class="fa-solid fa-star text-yellow-200 mr-1.5"></i> <span id="score-display">0</span> pts
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 sm:p-6">
+        
+        <!-- ================= LEARN SECTION ================= -->
+        <section id="view-learn" class="space-y-6">
+            <div class="bg-white/90 backdrop-blur rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-amber-300">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Lesson Guide / የትምህርት መመሪያ</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-2">The Simple Present Tense & Verb Forms</h2>
+                    <p class="text-sm text-slate-600 mt-1">Based on Ethiopian curriculum rules. Click any speaker to hear our British narrator with a deep golden voice explaining verb forms in English and Amharic!</p>
+                </div>
+
+                <!-- 3 Functions Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Function 1: Habitual Actions -->
+                    <div class="bg-gradient-to-b from-emerald-50 to-emerald-100/50 rounded-2xl p-5 border-2 border-emerald-300 shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-emerald-700 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Rule 1 / ደንብ ፩</span>
+                                <button onclick="narrateFunction(1)" class="bg-amber-400 hover:bg-amber-500 text-slate-900 p-2.5 rounded-full shadow transition transform hover:scale-105" title="Listen / አዳምጥ">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-bold text-lg text-emerald-900">Habitual Actions & States</h3>
+                            <p class="text-xs text-emerald-700 font-semibold mb-3">የዕለት ተዕለት ልምዶች (Verb + s/es)</p>
+                            
+                            <div class="bg-white p-3 rounded-xl shadow-inner text-xs space-y-2 mb-4">
+                                <p class="font-medium text-slate-700"><strong>Example:</strong> Rehima <span class="text-emerald-700 font-bold">gets</span> up at 6:00 A.M. She <span class="text-emerald-700 font-bold">goes</span>, <span class="text-emerald-700 font-bold">eats</span>, <span class="text-emerald-700 font-bold">wears</span>, and <span class="text-emerald-700 font-bold">walks</span>.</p>
+                                <p class="text-emerald-800 border-t pt-2 font-medium"><strong>ትርጉም (Amharic):</strong> ለሶስተኛ አካል (he, she, it) ግሱ ላይ <strong>s</strong> ወይም <strong>es</strong> ይጨመራል። ራሂማ ትነሳለች፣ ትሄዳለች፣ ትበላለች።</p>
+                            </div>
+                        </div>
+                        <button onclick="startSpecificGame(1)" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2 px-4 rounded-xl text-sm transition shadow">
+                            Play Habit Verb Game / የልምድ ግስ ጨዋታ
+                        </button>
+                    </div>
+
+                    <!-- Function 2: General Truth -->
+                    <div class="bg-gradient-to-b from-amber-50 to-amber-100/50 rounded-2xl p-5 border-2 border-amber-300 shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Rule 2 / ደንብ ፪</span>
+                                <button onclick="narrateFunction(2)" class="bg-amber-400 hover:bg-amber-500 text-slate-900 p-2.5 rounded-full shadow transition transform hover:scale-105" title="Listen / አዳምጥ">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-bold text-lg text-amber-900">General Truth</h3>
+                            <p class="text-xs text-amber-700 font-semibold mb-3">የዓለም እውነታዎች (Permanent Verbs)</p>
+                            
+                            <div class="bg-white p-3 rounded-xl shadow-inner text-xs space-y-2 mb-4">
+                                <p class="font-medium text-slate-700"><strong>Example:</strong> The sun <span class="text-amber-700 font-bold">appears</span> to rise in the east. It <span class="text-amber-700 font-bold">sets</span> in the west.</p>
+                                <p class="text-amber-800 border-t pt-2 font-medium"><strong>ትርጉም (Amharic):</strong> ፀሐይ በምስራቅ ትወጣለች። ቋሚ እውነታዎችን ስንገልጽ singular subject ላይ ግሱ <strong>appears, rises, sets</strong> ይወስዳል።</p>
+                            </div>
+                        </div>
+                        <button onclick="startSpecificGame(2)" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition shadow">
+                            Play Truth Verb Game / የእውነት ግስ ጨዋታ
+                        </button>
+                    </div>
+
+                    <!-- Function 3: State of Being -->
+                    <div class="bg-gradient-to-b from-blue-50 to-blue-100/50 rounded-2xl p-5 border-2 border-blue-300 shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-blue-700 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Rule 3 / ደንብ ፫</span>
+                                <button onclick="narrateFunction(3)" class="bg-amber-400 hover:bg-amber-500 text-slate-900 p-2.5 rounded-full shadow transition transform hover:scale-105" title="Listen / አዳምጥ">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-bold text-lg text-blue-900">State of Being</h3>
+                            <p class="text-xs text-blue-700 font-semibold mb-3">የሁኔታ ግሶች (am, is, are, live)</p>
+                            
+                            <div class="bg-white p-3 rounded-xl shadow-inner text-xs space-y-2 mb-4">
+                                <p class="font-medium text-slate-700"><strong>Example:</strong> I <span class="text-blue-700 font-bold">am</span> Hanfire. I <span class="text-blue-700 font-bold">live</span> in Asayita. My father <span class="text-blue-700 font-bold">is</span> a teacher.</p>
+                                <p class="text-blue-800 border-t pt-2 font-medium"><strong>ትርጉም (Amharic):</strong> ማንነትንና ሁኔታን ለመግለጽ <strong>am, is, are</strong> እንዲሁም <strong>live</strong> የመሳሰሉ ግሶችን እንጠቀማለን።</p>
+                            </div>
+                        </div>
+                        <button onclick="startSpecificGame(3)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-xl text-sm transition shadow">
+                            Play State Verb Game / የሁኔታ ግስ ጨዋታ
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="switchTab('game')" class="bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold px-8 py-3 rounded-2xl shadow-lg text-base transition transform hover:scale-105">
+                        <i class="fa-solid fa-rocket mr-2"></i>Start Verb Games / የግስ ጨዋታዎችን ጀምር
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GAME SECTION ================= -->
+        <section id="view-game" class="hidden space-y-6">
+            <div class="bg-white/95 backdrop-blur rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-emerald-400">
+                
+                <!-- Game Header & Category Selector -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-4 border-b gap-4">
+                    <div>
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Verb Form Challenge / ትክክለኛውን ግስ ይምረጡ</span>
+                        <h2 id="game-title" class="text-xl sm:text-2xl font-extrabold text-emerald-900 mt-1">Challenge 1: Habitual Verbs</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="selectGameMode(1)" id="btn-mode-1" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow">Habit / ልምድ</button>
+                        <button onclick="selectGameMode(2)" id="btn-mode-2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-200 text-slate-700">Truth / እውነት</button>
+                        <button onclick="selectGameMode(3)" id="btn-mode-3" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-200 text-slate-700">State / ሁኔታ</button>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div id="quiz-container" class="max-w-2xl mx-auto bg-gradient-to-br from-slate-50 to-emerald-50/50 rounded-2xl p-6 border-2 border-slate-200 shadow-md">
+                    <div class="flex justify-between items-center mb-4">
+                        <span id="question-counter" class="text-xs font-bold text-slate-500">Question 1 of 5</span>
+                        <button onclick="narrateCurrentQuestion()" class="bg-amber-400 hover:bg-amber-500 text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold shadow flex items-center">
+                            <i class="fa-solid fa-volume-high mr-1.5"></i> Read Verb Sentence (British Voice)
+                        </button>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 id="question-text" class="text-lg sm:text-xl font-bold text-slate-800 mb-2">Loading question...</h3>
+                        <p id="question-amharic" class="text-sm font-semibold text-emerald-700 bg-emerald-50 p-2 rounded-lg border border-emerald-200">የአማርኛ ትርጉም እየተጫነ ነው...</p>
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <!-- Feedback & Next Button -->
+                    <div id="feedback-box" class="hidden p-4 rounded-xl mb-4 text-sm font-medium"></div>
+                    
+                    <div class="flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" class="hidden bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-2.5 rounded-xl shadow transition">
+                            Next Question / ቀጣይ ጥያቄ <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Completion Screen -->
+                <div id="completion-screen" class="hidden text-center py-12 max-w-lg mx-auto space-y-4">
+                    <div class="text-6xl">🎉🇪🇹🏆</div>
+                    <h3 class="text-2xl font-extrabold text-emerald-900">Congratulations! / እንኳን ደስ አለዎት!</h3>
+                    <p class="text-slate-600 text-sm">You mastered the Simple Present Tense verb forms successfully!</p>
+                    <div class="bg-amber-100 text-amber-900 font-bold p-4 rounded-xl border border-amber-300 text-lg">
+                        Final Score: <span id="final-score">0</span> Points!
+                    </div>
+                    <div class="flex justify-center space-x-3 pt-4">
+                        <button onclick="restartGame()" class="bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl shadow hover:bg-emerald-800">
+                            Play Again / እንደገና ይጫወቱ
+                        </button>
+                        <button onclick="switchTab('learn')" class="bg-amber-500 text-slate-950 font-bold px-6 py-2.5 rounded-xl shadow hover:bg-amber-600">
+                            Back to Lesson / ወደ ትምህርት ተመለስ
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-emerald-950 text-emerald-200 py-4 text-center text-xs mt-auto">
+        <p>Designed with 🇪🇹 love for Ethiopian Kids | Simple Present Tense Verb Practice</p>
+    </footer>
+
+    <!-- Audio / Speech Generation Script using gemini-2.5-flash-preview-tts with British Deep Golden Voice -->
+    <script>
+        let score = 0;
+        let currentMode = 1; // 1: Habit, 2: General Truth, 3: State of Being
+        let currentQuestionIndex = 0;
+        let isAnsweringLocked = false;
+
+        // Quiz Database focusing strictly on appropriate Verb Forms (Subject-Verb agreement, -s/-es, base forms)
+        const quizData = {
+            1: [ // Habitual Actions (Rehima's routine verb forms)
+                {
+                    q: "Rehima is a student. She always ___ up at 6:00 A.M.",
+                    am: "ራሂማ ተማሪ ናት። ሁልጊዜ ጠዋት ትነሳለች (Choose correct verb form)",
+                    options: ["get", "gets", "getting", "got"],
+                    answer: 1,
+                    explanation: "For third-person singular 'She' in Simple Present Tense, we add '-s' to the verb: 'gets'."
+                },
+                {
+                    q: "After waking up, she ___ to the toilet.",
+                    am: "ከነቃች በኋላ ወደ ሽንት ቤት ትሄዳለች።",
+                    options: ["go", "goes", "going", "gone"],
+                    answer: 1,
+                    explanation: "Subject 'She' requires the verb form ending in -es: 'goes'."
+                },
+                {
+                    q: "After that, Rehima ___ her breakfast.",
+                    am: "ከዚህም በኋላ ራሂማ ቁርስ ትበላለች።",
+                    options: ["eat", "eating", "eats", "ate"],
+                    answer: 2,
+                    explanation: "Subject 'Rehima' is singular (she), so we use the verb form 'eats'."
+                },
+                {
+                    q: "She ___ her uniform before leaving home.",
+                    am: "ከቤት ከመውጣቷ በፊት ዩኒፎርሟን ትለብሳለች።",
+                    options: ["wear", "wears", "wearing", "wore"],
+                    answer: 1,
+                    explanation: "With 'She', the correct present verb form is 'wears'."
+                },
+                {
+                    q: "Every morning, she ___ to school on foot.",
+                    am: "በየጥዋቱ ወደ ትምህርት ቤት በእግሯ ትሄዳለች።",
+                    options: ["walk", "walks", "walking", "walked"],
+                    answer: 1,
+                    explanation: "Habitual action for singular 'She' takes '-s': 'walks'."
+                }
+            ],
+            2: [ // General Truth verb forms
+                {
+                    q: "The sun ___ in the east every morning.",
+                    am: "ፀሐይ በየጥዋቱ በምስራቅ ትወጣለች።",
+                    options: ["rise", "rises", "rising", "rose"],
+                    answer: 1,
+                    explanation: "General truth with singular subject 'The sun' uses the verb form 'rises'."
+                },
+                {
+                    q: "In the evening, the sun ___ in the west.",
+                    am: "ማምሻውን ፀሐይ በምዕራብ ትጠልቃለች።",
+                    options: ["set", "sets", "setting", "setter"],
+                    answer: 1,
+                    explanation: "Singular subject 'The sun' takes the verb form 'sets'."
+                },
+                {
+                    q: "Scientific facts like sunrise and sunset ___ permanent truths.",
+                    am: "እንደ መውጣትና መጥለቅ ያሉ ሳይንሳዊ እውነታዎች ቋሚ እውነታዎች ናቸው።",
+                    options: ["is", "am", "are", "be"],
+                    answer: 2,
+                    explanation: "Plural subject 'facts' uses the verb 'are'."
+                },
+                {
+                    q: "The Earth ___ around the sun.",
+                    am: "ምድር በፀሐይ ዙሪያ ትዞራለች።",
+                    options: ["move", "moves", "moving", "moved"],
+                    answer: 1,
+                    explanation: "General truth for singular subject 'The Earth' takes the verb form 'moves'."
+                },
+                {
+                    q: "Water ___ at 100 degrees Celsius.",
+                    am: "ውሃ በ 100 ዲግሪ ሴንቲግሬድ ይፈላል።",
+                    options: ["boil", "boils", "boiling", "boiled"],
+                    answer: 1,
+                    explanation: "General truth for singular uncountable noun 'Water' uses 'boils'."
+                }
+            ],
+            3: [ // State of Being verb forms
+                {
+                    q: "I ___ Hanfire, and I live in Asayita.",
+                    am: "እኔ ሃንፊሬ ነኝ፣ በአሳይታም እኖራለሁ።",
+                    options: ["is", "am", "are", "be"],
+                    answer: 1,
+                    explanation: "The pronoun 'I' always pairs with the verb form 'am' for state of being."
+                },
+                {
+                    q: "My father ___ a teacher in our town.",
+                    am: "አባቴ በከተማችን መምህር ነው።",
+                    options: ["am", "are", "is", "be"],
+                    answer: 1,
+                    explanation: "Singular subject 'My father' uses the verb form 'is'."
+                },
+                {
+                    q: "My mother ___ a nurse at the clinic.",
+                    am: "እናቴ በክሊኒኩ ነርስ ናት።",
+                    options: ["is", "are", "am", "be"],
+                    answer: 0,
+                    explanation: "Singular subject 'My mother' uses the verb form 'is'."
+                },
+                {
+                    q: "We ___ proud students learning English grammar.",
+                    am: "እኛ የእንግሊዝኛ ሰዋሰው የምንማር ኩሩ ተማሪዎች ነን።",
+                    options: ["is", "am", "are", "be"],
+                    answer: 2,
+                    explanation: "Plural subject 'We' takes the verb form 'are'."
+                },
+                {
+                    q: "They ___ in a nice house near the school.",
+                    am: "እነሱ ከትምህርት ቤቱ አጠገብ ባለ ቆንጆ ቤት ውስጥ ይኖራሉ።",
+                    options: ["lives", "live", "living", "lived"],
+                    answer: 1,
+                    explanation: "Plural subject 'They' uses the base verb form 'live' without '-s'."
+                }
+            ]
+        };
+
+        function switchTab(tab) {
+            const learnView = document.getElementById('view-learn');
+            const gameView = document.getElementById('view-game');
+            const navLearn = document.getElementById('nav-learn');
+            const navGame = document.getElementById('nav-game');
+
+            if (tab === 'learn') {
+                learnView.classList.remove('hidden');
+                gameView.classList.add('hidden');
+                navLearn.className = "px-4 py-2 rounded-xl font-bold transition bg-amber-400 text-emerald-950 shadow-md";
+                navGame.className = "px-4 py-2 rounded-xl font-bold transition bg-emerald-700 text-white hover:bg-emerald-600";
+            } else {
+                learnView.classList.add('hidden');
+                gameView.classList.remove('hidden');
+                navGame.className = "px-4 py-2 rounded-xl font-bold transition bg-amber-400 text-emerald-950 shadow-md";
+                navLearn.className = "px-4 py-2 rounded-xl font-bold transition bg-emerald-700 text-white hover:bg-emerald-600";
+                loadQuestion();
+            }
+        }
+
+        function startSpecificGame(mode) {
+            currentMode = mode;
+            currentQuestionIndex = 0;
+            updateModeButtons();
+            switchTab('game');
+        }
+
+        function selectGameMode(mode) {
+            currentMode = mode;
+            currentQuestionIndex = 0;
+            updateModeButtons();
+            loadQuestion();
+        }
+
+        function updateModeButtons() {
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`btn-mode-${i}`);
+                if (i === currentMode) {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300";
+                }
+            }
+            const titles = {
+                1: "Challenge 1: Habitual Verb Forms / የዕለት ተዕለት ልምድ ግሶች",
+                2: "Challenge 2: General Truth Verb Forms / የዓለም እውነታ ግሶች",
+                3: "Challenge 3: State of Being Verb Forms / የሁኔታ ግሶች"
+            };
+            document.getElementById('game-title').innerText = titles[currentMode];
+        }
+
+        function loadQuestion() {
+            isAnsweringLocked = false;
+            const qList = quizData[currentMode];
+            if (currentQuestionIndex >= qList.length) {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('completion-screen').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+                return;
+            }
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('completion-screen').classList.add('hidden');
+            document.getElementById('feedback-box').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            const qObj = qList[currentQuestionIndex];
+            document.getElementById('question-counter').innerText = `Question ${currentQuestionIndex + 1} of ${qList.length}`;
+            document.getElementById('question-text').innerText = qObj.q;
+            document.getElementById('question-amharic').innerText = `ትርጉም: ${qObj.am}`;
+
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            qObj.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white hover:bg-emerald-50 border-2 border-slate-200 hover:border-emerald-500 font-semibold text-sm p-3 rounded-xl text-left transition shadow-sm flex items-center justify-between";
+                btn.innerHTML = `<span class="font-bold text-emerald-900">${opt}</span> <span class="text-xs text-slate-400 font-normal">Option ${idx + 1}</span>`;
+                btn.onclick = () => selectAnswer(idx);
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (isAnsweringLocked) return;
+            isAnsweringLocked = true;
+
+            const qObj = quizData[currentMode][currentQuestionIndex];
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.remove('hidden');
+
+            const optionButtons = document.getElementById('options-grid').children;
+
+            if (selectedIndex === qObj.answer) {
+                score += 10;
+                document.getElementById('score-display').innerText = score;
+                feedbackBox.className = "p-4 rounded-xl mb-4 text-sm font-medium bg-emerald-100 text-emerald-900 border border-emerald-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-2"></i><strong>Correct! ትክክል!</strong> ${qObj.explanation}`;
+                optionButtons[selectedIndex].className = "bg-emerald-100 border-2 border-emerald-600 font-semibold text-sm p-3 rounded-xl text-left shadow-sm flex items-center justify-between text-emerald-900";
+                playAudioGeminiTTS("Splendid! That is the correct verb form.");
+            } else {
+                feedbackBox.className = "p-4 rounded-xl mb-4 text-sm font-medium bg-rose-100 text-rose-900 border border-rose-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-600 mr-2"></i><strong>Not quite!</strong> ${qObj.explanation}`;
+                optionButtons[selectedIndex].className = "bg-rose-100 border-2 border-rose-600 font-semibold text-sm p-3 rounded-xl text-left shadow-sm flex items-center justify-between text-rose-900";
+                optionButtons[qObj.answer].className = "bg-emerald-100 border-2 border-emerald-600 font-semibold text-sm p-3 rounded-xl text-left shadow-sm flex items-center justify-between text-emerald-900";
+                playAudioGeminiTTS("Good try. Let's look at the correct verb form.");
+            }
+
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function restartGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('score-display').innerText = score;
+            loadQuestion();
+        }
+
+        // Narrate specific lesson functions using Gemini TTS with British Accent & Deep Golden Voice
+        async function narrateFunction(funcNum) {
+            let scriptText = "";
+            if (funcNum === 1) {
+                scriptText = "Rule one: Habitual actions. For third-person singular subjects like She, we add s or es to the verb. Rehima gets up at six A.M. She goes, eats, wears, and walks.";
+            } else if (funcNum === 2) {
+                scriptText = "Rule two: General truth. Permanent facts take singular verb forms such as appears, rises, and sets.";
+            } else if (funcNum === 3) {
+                scriptText = "Rule three: State of being. We use am, is, are, and live to describe our identity and state.";
+            }
+            await playAudioGeminiTTS(scriptText);
+        }
+
+        function narrateCurrentQuestion() {
+            const qObj = quizData[currentMode][currentQuestionIndex];
+            playAudioGeminiTTS(qObj.q);
+        }
+
+        // Gemini TTS API Integration with British Accent & Deep Golden Voice instruction
+        async function playAudioGeminiTTS(textToSpeak) {
+            const prompt = `Say with a deep golden voice, refined British accent, warm, encouraging, and clear tone: ${textToSpeak}`;
+            const payload = {
+                contents: [{
+                    parts: [{ text: prompt }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Charon" } // Deep, resonant British-like voice
+                        }
+                    }
+                }
+            };
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                    const match = mimeType.match(/rate=(\d+)/);
+                    const sampleRate = match ? parseInt(match[1], 10) : 24000;
+                    const pcmData = base64ToArrayBuffer(audioData);
+                    const pcm16 = new Int16Array(pcmData);
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                }
+            } catch (e) {
+                console.error("TTS playback error:", e);
+            }
+        }
+
+        // Helper functions for raw PCM 16-bit to WAV conversion
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcm16, sampleRate) {
+            const numChannels = 1;
+            const bitsPerSample = 16;
+            const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+            const blockAlign = numChannels * (bitsPerSample / 8);
+            const dataSize = pcm16.length * 2;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataSize, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, byteRate, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitsPerSample, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            let offset = 44;
+            for (let i = 0; i < pcm16.length; i++, offset += 2) {
+                view.setInt16(offset, pcm16[i], true);
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
+</body>
+</html>
